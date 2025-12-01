@@ -27,15 +27,13 @@ function loadMusic(indexNumb) {
 
 function playMusic() {
   wrapper.classList.add("paused");
-  playpauseIcon.classList.remove("fa-play");
-  playpauseIcon.classList.add("fa-pause");
+  playpauseIcon.innerText = "pause";
   mainAudio.play();
 }
 
 function pauseMusic() {
   wrapper.classList.remove("paused");
-  playpauseIcon.classList.remove("fa-pause");
-  playpauseIcon.classList.add("fa-play");
+  playpauseIcon.innerText = "play_arrow";
   mainAudio.pause();
 }
 
@@ -44,6 +42,7 @@ function prevMusic() {
   if (musicIndex < 1) musicIndex = allMusic.length;
   loadMusic(musicIndex);
   playMusic();
+  playingNow();
 }
 
 function nextMusic() {
@@ -51,6 +50,7 @@ function nextMusic() {
   if (musicIndex > allMusic.length) musicIndex = 1;
   loadMusic(musicIndex);
   playMusic();
+  playingNow();
 }
 
 playpauseBtn.addEventListener("click", () => {
@@ -61,23 +61,22 @@ playpauseBtn.addEventListener("click", () => {
 prevBtn.addEventListener("click", prevMusic);
 nextBtn.addEventListener("click", nextMusic);
 
+mainAudio.addEventListener("loadeddata", () => {
+  let musicDuration = wrapper.querySelector(".max-duration");
+  let audioDuration = mainAudio.duration;
+  let totalMin = Math.floor(audioDuration / 60);
+  let totalSec = Math.floor(audioDuration % 60);
+  if (totalSec < 10) totalSec = `0${totalSec}`;
+  musicDuration.innerText = `${totalMin}:${totalSec}`;
+});
+
 mainAudio.addEventListener("timeupdate", (e) => {
   const currentTime = e.target.currentTime;
   const duration = e.target.duration;
   let progressWidth = (currentTime / duration) * 100;
   progressBar.style.width = `${progressWidth}%`;
 
-  let musicCurrentTime = wrapper.querySelector(".current");
-  let musicDuration = wrapper.querySelector(".duration");
-
-  mainAudio.addEventListener("loadeddata", () => {
-    let audioDuration = mainAudio.duration;
-    let totalMin = Math.floor(audioDuration / 60);
-    let totalSec = Math.floor(audioDuration % 60);
-    if (totalSec < 10) totalSec = `0${totalSec}`;
-    musicDuration.innerText = `${totalMin}:${totalSec}`;
-  });
-
+  let musicCurrentTime = wrapper.querySelector(".current-time");
   let currentMin = Math.floor(currentTime / 60);
   let currentSec = Math.floor(currentTime % 60);
   if (currentSec < 10) currentSec = `0${currentSec}`;
@@ -112,7 +111,7 @@ for (let i = 0; i < allMusic.length; i++) {
         <p>${allMusic[i].artist}</p>
       </div>
       <audio class="${allMusic[i].src}" src="${allMusic[i].src}.mp3"></audio>
-      <span id="${allMusic[i].src}" class="audio-duration">3:40</span>
+      <span id="${allMusic[i].src}" class="audio-duration">0:00</span>
     </li>
   `;
   ulTag.insertAdjacentHTML("beforeend", liTag);
