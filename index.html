@@ -5,44 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music Player</title>
 
-  <!-- Material Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Small Disclaimer (UI-safe) -->
   <div class="disclaimer-badge">
     Educational use only · Music belongs to respective owners
   </div>
 
   <div class="wrapper">
 
-    <!-- Top Bar -->
     <div class="top-bar">
       <i class="material-icons">expand_more</i>
       <span>Now Playing</span>
       <i class="material-icons">more_horiz</i>
     </div>
 
-    <!-- Song Image -->
     <div class="img-area">
       <img src="" alt="Song Image">
     </div>
 
-    <!-- Song Details -->
     <div class="song-details">
       <p class="name">Song Name</p>
       <p class="artist">Artist Name</p>
     </div>
 
-    <!-- Progress Area -->
     <div class="progress-area">
       <div class="progress-bar">
-        <audio id="main-audio" src=""></audio>
+        <audio id="main-audio"></audio>
       </div>
       <div class="song-timer">
         <span class="current-time">0:00</span>
@@ -50,7 +42,6 @@
       </div>
     </div>
 
-    <!-- Controls -->
     <div class="controls">
       <i id="repeat-plist" class="material-icons">repeat</i>
       <i id="prev" class="material-icons">skip_previous</i>
@@ -63,7 +54,7 @@
       <i id="more-music" class="material-icons">queue_music</i>
     </div>
 
-    <!-- Music List -->
+    <!-- MUSIC LIST -->
     <div class="music-list">
       <div class="header">
         <div class="row">
@@ -79,6 +70,5 @@
 
   <script src="music-list.js"></script>
   <script src="script.js"></script>
-
 </body>
 </html>
