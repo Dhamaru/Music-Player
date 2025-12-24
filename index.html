@@ -5,22 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music Player</title>
 
-  <!-- Main Styles -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- Material Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  <!-- Google Material Icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!--
-    DISCLAIMER:
-    This Music Player project is created strictly for educational and personal learning purposes.
-    All audio files, images, and media content used belong to their respective copyright owners.
-    No copyright infringement is intended.
-    This project is not designed for commercial use or public redistribution.
-  -->
+  <!-- Small Disclaimer (UI-safe) -->
+  <div class="disclaimer-badge">
+    Educational use only · Music belongs to respective owners
+  </div>
 
   <div class="wrapper">
 
@@ -33,7 +30,7 @@
 
     <!-- Song Image -->
     <div class="img-area">
-      <img src="" alt="Song Image" />
+      <img src="" alt="Song Image">
     </div>
 
     <!-- Song Details -->
@@ -70,27 +67,16 @@
     <div class="music-list">
       <div class="header">
         <div class="row">
-          <i class="list material-icons">queue_music</i>
-          <span>Music List</span>
+          <i class="material-icons list">queue_music</i>
+          <span>Music list</span>
         </div>
         <i id="close" class="material-icons">close</i>
       </div>
-      <ul>
-        <!-- Songs will be injected dynamically using JS -->
-      </ul>
+      <ul></ul>
     </div>
 
   </div>
 
-  <!-- Optional Visible Footer Disclaimer -->
-  <footer class="disclaimer">
-    <p>
-      This music player is developed for educational purposes only.
-      All music rights belong to their respective owners.
-    </p>
-  </footer>
-
-  <!-- Scripts -->
   <script src="music-list.js"></script>
   <script src="script.js"></script>
 
