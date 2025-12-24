@@ -6,10 +6,6 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-*::before, *::after{
-  margin: 0;
-  padding: 0;
-}
 
 :root{
   --pink: #ff74a4;
@@ -17,7 +13,6 @@
   --lightblack: #515C6F;
   --white: #ffffff;
   --darkwhite: #cecaca;
-  --pinkshadow: #ffcbdd;
   --lightbshadow: rgba(0,0,0,0.15);
 }
 
@@ -28,10 +23,9 @@ body{
   justify-content: center;
   min-height: 100vh;
   padding: 20px 0;
-  background: linear-gradient(var(--pink) 0%, var(--violet) 100%);
+  background: linear-gradient(var(--pink), var(--violet));
 }
 
-/* ✅ Small, non-intrusive disclaimer */
 .disclaimer-badge{
   font-size: 9px;
   color: rgba(255,255,255,0.6);
@@ -39,9 +33,6 @@ body{
   padding: 3px 10px;
   border-radius: 12px;
   margin-bottom: 18px;
-  backdrop-filter: blur(4px);
-  max-width: 360px;
-  text-align: center;
 }
 
 .wrapper{
@@ -51,26 +42,17 @@ body{
   border-radius: 15px;
   background: var(--white);
   box-shadow: 0px 6px 15px var(--lightbshadow);
-  overflow: hidden;
-}
-
-.wrapper i{
-  cursor: pointer;
+  overflow: hidden; /* IMPORTANT */
 }
 
 .top-bar,
-.progress-area .song-timer,
 .controls,
+.song-timer,
 .music-list .header,
 .music-list ul li{
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.top-bar i{
-  font-size: 30px;
-  color: var(--lightblack);
 }
 
 .top-bar span{
@@ -84,7 +66,6 @@ body{
   margin-top: 25px;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0px 6px 12px var(--lightbshadow);
 }
 
 .img-area img{
@@ -111,25 +92,18 @@ body{
 
 .progress-area{
   height: 6px;
-  width: 100%;
-  border-radius: 50px;
   background: #f0f0f0;
+  border-radius: 50px;
 }
 
-.progress-area .progress-bar{
-  height: inherit;
+.progress-bar{
+  height: 100%;
   width: 0%;
-  border-radius: inherit;
   background: linear-gradient(90deg, var(--pink), var(--violet));
 }
 
-.song-timer span{
-  font-size: 13px;
-  color: var(--lightblack);
-}
-
 .controls{
-  margin: 40px 0 5px;
+  margin: 40px 0 10px;
 }
 
 .controls i{
@@ -139,54 +113,47 @@ body{
   -webkit-background-clip: text;
 }
 
-.controls i:nth-child(2),
-.controls i:nth-child(4){
-  font-size: 43px;
-}
-
-.controls .play-pause{
+.play-pause{
   height: 54px;
   width: 54px;
   border-radius: 50%;
+  background: linear-gradient(var(--white), var(--darkwhite));
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(var(--white), var(--darkwhite));
   box-shadow: 0px 0px 5px var(--pink);
 }
 
+/* ✅ MUSIC LIST FIX */
 .music-list{
   position: absolute;
-  bottom: -55%;
+  left: 0;
+  bottom: -100%;
   width: 100%;
   background: var(--white);
-  padding: 15px 30px;
-  border-radius: 15px;
-  box-shadow: 0px -5px 10px rgba(0,0,0,0.1);
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.15s ease;
+  border-radius: 15px 15px 0 0;
+  padding: 15px 25px;
+  box-shadow: 0px -6px 12px rgba(0,0,0,0.12);
+  transition: bottom 0.25s ease;
 }
 
 .music-list.show{
   bottom: 0;
-  opacity: 1;
-  pointer-events: auto;
 }
 
 .music-list ul{
+  margin-top: 10px;
   max-height: 260px;
   overflow-y: auto;
 }
 
-.music-list ul::-webkit-scrollbar{
-  width: 0;
-}
-
 .music-list ul li{
   list-style: none;
-  padding-bottom: 10px;
-  margin-bottom: 5px;
+  padding: 10px 0;
   border-bottom: 1px solid #e5e5e5;
   color: var(--lightblack);
+}
+
+.music-list ul li:last-child{
+  border-bottom: none;
 }
